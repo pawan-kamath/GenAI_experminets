@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Connect to SNOW</title>
+    <!-- Include Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Include custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('chat_page') }}">Database Assistant</a>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Connect to SNOW Api</h1>
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+        <form id="connect-form" method="post" action="{{ url_for('connect_snow') }}">
+            <!-- Hidden field to specify database type -->
+            <input type="hidden" name="db_type" value="servicenow">
+            <div class="form-group">
+                <label for="host">Default Api</label>
+                <input type="text" class="form-control" id="api" name="api" placeholder="https://servicenow...." required>
+            </div>
+            <div class="form-group">
+                <label for="user">User ID</label>
+                <input type="text" class="form-control" id="user" name="user" placeholder="e.g., user" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Connect</button>
+            <a href="{{ url_for('chat_page') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Connect to Database</title>
+    <!-- Include Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Include custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('chat_page') }}">Database Assistant</a>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Connect to PostgreSQL Database</h1>
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+        <form id="connect-form" method="post" action="{{ url_for('connect') }}">
+            <!-- Hidden field to specify database type -->
+            <input type="hidden" name="db_type" value="postgresql">
+            <div class="form-group">
+                <label for="host">Server</label>
+                <input type="text" class="form-control" id="host" name="host" placeholder="e.g., postgres5241-l.com" required>
+            </div>
+            <div class="form-group">
+                <label for="port">Port</label>
+                <input type="number" class="form-control" id="port" name="port" placeholder="e.g., 5433" required>
+            </div>
+            <div class="form-group">
+                <label for="database">Database</label>
+                <input type="text" class="form-control" id="database" name="database" placeholder="e.g., _platform_production" required>
+            </div>
+            <div class="form-group">
+                <label for="user">User ID</label>
+                <input type="text" class="form-control" id="user" name="user" placeholder="e.g., user" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="schema">Schema Name</label>
+                <input type="text" class="form-control" id="schema" name="schema" placeholder="schema-name" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Connect</button>
+            <a href="{{ url_for('chat_page') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</body>
+</html>

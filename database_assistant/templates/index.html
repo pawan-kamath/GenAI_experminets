@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Digger</title>
+    <!-- Include Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Include custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+   <!-- Navigation Bar -->
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('chat_page') }}">Data Digger</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <span class="navbar-text">
+                        Connected to:
+                        {% if db_type == 'servicenow' %}
+                            ServiceNow Instance: {{ db_name }}
+                        {% elif db_type == 'postgresql' %}
+                            PostgreSQL Database: {{ db_name }}
+                        {% else %}
+                            SQLite Database: {{ db_name }}
+                        {% endif %}
+                    </span>
+                </li>
+                {% if db_type != 'sqlite' %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="connect-sqlite-btn" data-db-type="sqlite" data-db-name="{{ sqlite_db_name }}">Switch to SQLite</a>
+                </li>
+                {% endif %}
+                {% if db_type != 'postgresql' %}
+                <li class="nav-item">
+                    <a class="nav-link {% if not postgres_available %}disabled{% endif %}"
+                    href="#" id="connect-postgres-btn" data-db-type="postgresql" data-db-name="{{ postgres_db_name }}">Switch to PostgreSQL</a>
+                </li>
+                {% endif %}
+                {% if db_type != 'servicenow' %}
+                <li class="nav-item">
+                    <a class="nav-link {% if not servicenow_available %}disabled{% endif %}"
+                    href="#" id="connect-servicenow-btn" data-db-type="servicenow" data-db-name="{{ servicenow_instance_name }}">Switch to ServiceNow</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div id="loading-spinner" style="display:none; position:fixed; top:50%; left:50%; transform: translate(-50%, -50%); z-index: 9999;">
+        <div class="d-flex align-items-center">
+            <div class="spinner-border text-primary mr-3" role="status" aria-hidden="true"></div>
+            <strong id="loading-message">Loading...</strong>
+        </div>
+    </div>
+
+    <!-- Alert Container -->
+    <div id="alert-container" class="container mt-2"></div>
+
+    <!-- Chat Interface -->
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <!-- Chat Column -->
+            <div class="col-md-8">
+                <!-- Existing chat interface -->
+                <div id="chat-window" class="mb-3">
+                    <div id="messages">
+                        <!-- Messages will be appended here -->
+                    </div>
+                </div>
+                <!-- Chat form -->
+                <form id="chat-form">
+                    <div class="input-group">
+                        <input type="text" id="message-input" class="form-control" placeholder="Type your message..." autocomplete="off">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Logs -->
+                <div id="logs-window" class="mt-4">
+                    <!-- Logs will be appended here -->
+                </div>
+            </div>
+            <!-- Results Column -->
+            <div class="col-md-4">
+                <h5>Query Results</h5>
+                <div id="results-window" style="height: 80vh; overflow-y: auto; border: 1px solid #ced4da; padding: 10px; background-color: #fff;">
+                    <!-- Results will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Include marked.js via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Include custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

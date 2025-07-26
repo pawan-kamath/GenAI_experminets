@@ -1,0 +1,73 @@
+/* General Styles */
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+#chat-window {
+    height: 60vh;
+    overflow-y: auto;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    background-color: #fff;
+}
+
+#logs-window {
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    background-color: #e9ecef;
+}
+
+.log-entry {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+#message-input {
+    height: 50px;
+}
+
+.user-message, .bot-message {
+    margin-bottom: 15px;
+}
+.user-message {
+    font-weight: bold;
+    text-align: right;
+}
+.bot-message {
+    font-style: italic;
+}
+
+#results-window {
+    height: 80vh;
+    overflow-y: auto;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    background-color: #fff;
+}
+
+/* Spinner */
+#loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1050;
+}
+
+/* Alert Container */
+#alert-container {
+    position: fixed;
+    top: 70px; /* Adjust based on your navbar height */
+    right: 20px;
+    z-index: 1050;
+}
