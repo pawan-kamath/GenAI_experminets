@@ -1,8 +1,5 @@
 ## Langchain & LangGraph
 *NOTE: These are random notes for the time being*
-
-### .env vars to setup to run the langchain folder:
-[I](mailto:atharva.patade@intel.com) prefer using a .env file
 ```
 export OPENAI_API_KEY="your-api-key"
 export OPENAI_API_HOST="your-api-host"
@@ -38,7 +35,3 @@ Reference: [LangChain Python Docs](https://python.langchain.com/docs/introductio
 ### Why LangGraph? What does it do?
 
 [LangGraph](https://langchain-ai.github.io/langgraph/) is a low-level orchestration framework for building controllable agents. While langchain provides integrations and composable components to streamline LLM application development, the LangGraph library enables agent orchestration — offering customizable architectures, long-term memory, and human-in-the-loop to reliably handle complex tasks.
-
----
-For more details:
-atharva.patade@intel.com

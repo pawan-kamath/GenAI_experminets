@@ -121,7 +121,3 @@ The current version of the app by default is connected to an sqlite db called [c
 Below is a screenshot of the application interface:
 
 ![Data Digger Chat Interface](images/data_digger.png)
-
-
-#### For more details:
-Contact: atharva.patade@intel.com

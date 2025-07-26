@@ -39,6 +39,3 @@ once you have the key please put it in a .env file in each folder. The .env file
 OPENAI_API_KEY=<put your key here>
 OPENAI_API_HOST="https://aimsoa.iglb.intel.com/"
 ```
-
-#### For more details:
-Contact: atharva.patade@intel.com
